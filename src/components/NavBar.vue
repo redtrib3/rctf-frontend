@@ -15,17 +15,20 @@
 
     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
       <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-transparent md:dark:bg-transparent dark:border-gray-700">
+
         <li>
-          <a href="#" class="hover:bg-blue-800 md:hover:bg-transparent block py-2 px-3 md:p-0 text-white md:text-blue-700 md:dark:text-blue-500 md:font-bold" aria-current="page">Writeups</a>
+          <router-link to="/writeups"  active-class="text-lime-400" class="hover:bg-blue-800 md:hover:bg-transparent block py-2 px-3 md:p-0 md:font-bold" aria-current="page">Writeups</router-link>
+        </li>
+        
+        <li>
+          <a href="/challenges" :class="{ 'text-lime-500 hover:bg-blue-800 md:hover:bg-transparent block py-2 px-3 md:p-0 md:font-bold': isActive(), 'hover:bg-blue-800 md:hover:bg-transparent block py-2 px-3 md:p-0 md:font-bold': !isActive() }">Challenges</a>        
+        </li>
+
+        <li>
+          <router-link to="/projects"  active-class="text-lime-400" class="hover:bg-blue-800 md:hover:bg-transparent block py-2 px-3 md:p-0 md:font-bold" aria-current="page">Projects</router-link>
         </li>
         <li>
-          <a href="#" class="hover:bg-blue-800 md:hover:bg-transparent block py-2 px-3 md:p-0 text-gray-900 rounded hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:text-white md:dark:text-white md:font-bold">Challenges</a>
-        </li>
-        <li>
-          <a href="#" class="hover:bg-blue-800 md:hover:bg-transparent block py-2 px-3 md:p-0 text-gray-900 rounded hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:text-white md:dark:text-white md:font-bold">Projects</a>
-        </li>
-        <li>
-          <a href="#" class="hover:bg-blue-800 md:hover:bg-transparent block py-2 px-3 md:p-0 text-gray-900 rounded hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:text-white md:dark:text-white md:font-bold">Socials</a>
+          <router-link to="/socials" active-class="text-lime-400" class="hover:bg-blue-800 md:hover:bg-transparent block py-2 px-3 md:p-0 md:font-bold" aria-current="page">Socials</router-link>
         </li>
       </ul>
     </div>
@@ -38,7 +41,12 @@
 
 <script>
 export default {
-  name: 'NavBar'
+  name: 'NavBar',
+  methods:{
+      isActive(){
+        return this.$route.path === '/challenges';
+      }
+    }
 }
 
 </script>
