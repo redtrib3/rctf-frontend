@@ -1,7 +1,7 @@
 <template>
 
 <!-- Main modal -->
-<div  class="flex justify-center backdrop-blur-sm transition-colors  supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75  overflow-y-auto overflow-x-hidden fixed top-0 left-0 right-0 z-50 justify-center items-center w-full h-full md:inset-0 h-[calc(100%-1rem)] max-h-screen">
+<div  class="flex backdrop-blur-sm transition-colors  supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75  overflow-y-auto overflow-x-hidden fixed top-0 left-0 right-0 z-50 justify-center items-center w-full h-full md:inset-0  max-h-screen">
     <div class="relative p-4 w-full max-w-2xl max-h-full ">
         <!-- Modal content -->
         <div class="relative rounded-lg shadow-lg bg-gray-900 bg-opacity-1">
