@@ -39,6 +39,7 @@ export default {
         type: "Web",
         difficulty: "Hard",
         desc: " A house keeper who has to take care of many people at once “Man am I lucky to have a Nano!” ",
+        hint: null,
         attachmentLink: null,
         externalLink: "http://google.com"
       },
@@ -46,14 +47,16 @@ export default {
         title: "Gobsufucated",
         type: "Reversing",
         difficulty: "Medium",
+        hint: null,
         desc: " Walking is a simple yet effective way to improve your health. Not only is it a great form of low-impact exercise that can prevent witches from hexing you, but it can also make you touch grass. Go ahead, Take a walk! ",
-        attachmentLink: "redtrib3.me/file",
+        attachmentLink: "http://redtrib3.me/file",
         externalLink: null
     },
     {
         title: "Gutty Mystery",
         type: "OSINT",
         difficulty: "Easy",
+        hint: "The hint is life around you",
         desc: " Looking for answers? Look no further! Crush search, the ultimate Crush-search engine , is here to help. Just type in your crush's name and discover a world of information at your fingertips, even the phone number!. Fast, reliable, and easy to use, Don't waste time, start Crushing today! ",
         attachmentLink: null,
         externalLink: null
@@ -62,6 +65,7 @@ export default {
         title: "Gutty 2",
         type: "OSINT",
         difficulty: "Medium",
+        hint: "This another hint btw.",
         desc: " The Web-Times has requested a black box pentest. As a pentester, find ways to exploit the server and retrive the flag. ",
         attachmentLink: null,
         externalLink: "http://google.com.1"

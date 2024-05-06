@@ -5,14 +5,16 @@
         <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold mb-4 font-mono ml-4">Challenges<span class="animate-ping">_</span></h1>
         <p class="text-base md:text-lg lg:text-md mb-8 ml-4">A Collection of CTF challenges created by me.</p>
     </div>
+    
     <div class="absolute bottom-0 right-0 mb-4 mr-4">
         <!--Filter by Difficulty -->
-        <button id="dropdownBgHoverButton" data-dropdown-toggle="dropdownBgHover" class="relative text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="button">
-            Difficulty
-            <svg class="w-3 h-3 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <button type="button" id="dropdownBgHoverButton" data-dropdown-toggle="dropdownBgHover" class="inline-flex text-center text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+            <span>Difficulty</span>
+            <svg class="w-3 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
         </button>
+
         <!-- Dropdown menu -->
         <div id="dropdownBgHover" class="absolute right-0 mt-2 z-10 hidden w-48 bg-white rounded-lg shadow dark:bg-gray-700">
             <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownBgHoverButton">
@@ -25,9 +27,9 @@
             </ul>
         </div>
         <!--Filter by type --->
-        <button id="filterByTypeBtn" data-dropdown-toggle="filterByTypeMenus" class="relative text-white bg-green-700  ml-2 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="button">
-            Type
-            <svg class="w-3 h-3 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <button id="filterByTypeBtn"  class="inline-flex text-center ml-2 shadow-lg text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" type="button">
+            <span>Type</span>
+            <svg class="w-3 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
         </button>
