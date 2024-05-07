@@ -27,7 +27,6 @@ export default {
     methods: {
         showModal() {
             this.$emit('show-modal-event', this.challJson);
-            // console.log(this.challJson);
         }
     }
 
