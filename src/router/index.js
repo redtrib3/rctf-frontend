@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Challenges from '../views/Challenges.vue'
 import NotFound from '../views/404.vue'
 import Socials from '../views/Socials.vue';
+import Projects from '../views/Projects.vue';
 
 const routes = [
   {
@@ -14,6 +15,15 @@ const routes = [
     name: 'Socials',
     component: Socials
   },
+  {
+    path: '/projects',
+    name:  'Projects',
+    component: Projects,
+    meta: {
+      hideFooter: true
+    }
+  },
+  
   {
     path: '/:catchAll(.*)',
     name: 'Not-Found',

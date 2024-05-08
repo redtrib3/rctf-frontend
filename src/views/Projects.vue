@@ -1,0 +1,133 @@
+<template>
+
+<!--Side nav-->
+<aside  class="fixed left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" >
+   <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+      <ul class="space-y-2 font-medium">
+<!-- 
+         <li v-for="(item, index) in projects" :key="index">
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span class="ms-3">{{ item.title }}</span>
+            </a>
+         </li> -->
+         
+         <div class="text-gray-400 text-xl font-sans ">Skills</div>
+         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+
+         <div  class="flex flex-wrap">
+                <span v-for="(skill, index) in skillsArray" :key="index" class="bg-gray-900 m-1  text-xs font-medium me-2 px-2.5 py-0.5 rounded  dark:text-gray-300">{{ skill }}</span>
+         </div>
+
+      </ul>
+   </div>
+</aside>
+
+<!--Content-->
+<div  class="p-2 sm:ml-64" >
+  
+  <div class="bg-gray-900  text-white px-4 py-10 relative">
+    <div class="container mx-auto">
+        <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold font-mono  ml-4">Projects</h1>
+    </div>
+  </div>
+
+  <a  v-for="(proj, index) in projects" :key="index" title="Click to view" :href="proj.link" target="_blank">
+    <div  class="cursor-pointer max-w p-6 bg-white border border-gray-200 rounded-lg mx-4 my-4 shadow dark:bg-gray-800 dark:border-gray-700 hover:translate-y-[-4px] transform transition duration-300 relative">
+    
+            <h5 class="text-2xl  font-bold tracking-tight text-gray-900 dark:text-gray-100 ">{{  proj.title  }}</h5>
+            <p class="text-sm pb-4 text-gray-400 font-mono transition duration-200">{{ proj.stack }}</p>
+        <div>
+            <p class="font-normal text-gray-700 dark:text-gray-400 text-sm" >{{ proj.desc }}</p>
+        </div>
+
+        <div class="flex items-center justify-end">
+          <div class="flex items-center">
+            <span class="mr-1 text-gray-400">{{  proj.stars }}</span>
+            <svg  aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="w-3 h-5 fill-current text-amber-400">
+              <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+            </svg>
+            <span class="mr-1 ml-1 text-gray-400">{{  proj.forks }}</span>
+            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="w-3 h-5 fill-current text-white">
+              <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+            </svg>
+          </div>
+        </div>  
+    </div>
+  </a>
+
+  <a href="https://github.com/redtrib3" class="justify-center flex items-center mt-10 pointer-events-none dark:from-slate-900 w-full" target="_blank" >
+    <button type="button" class="relative bg-gray-800 hover:bg-gray-900 focus:outline-none  font-medium rounded-lg text-sm  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700  h-12 px-6 flex items-center pointer-events-auto">
+        More Projects
+    </button>
+  </a>
+
+
+
+  <FooterComp/>
+</div>
+
+</template>
+
+<script>
+
+import FooterComp from '@/components/FooterComp.vue';
+
+export default {
+    name: 'Projects',
+    components: {
+      FooterComp
+    },
+    data() {
+      return {
+        skillsArray:  [
+              'Python',
+              'Nodejs',
+              'ExpressJS',
+              'VueJS',
+              'GNU/Linux',
+              'Capture-the-flag',
+              'Docker',
+              'Django',
+              'Flask',
+              'MongoDB'
+        ],
+        projects: [
+          {
+            title: 'Brutal-FX',
+            stack: 'Python',
+            desc: 'A Python script demonstarting bruteforce attacks on Authentication pages.',
+            stars: 76,
+            forks: 14,
+            link: 'https://github.com/redtrib3/Brutal-FX'
+          },
+          {
+            title: 'Sploit Search',
+            stack: 'Python',
+            desc: 'Search for Exploits easily without the need of a local database.',
+            stars: '03',
+            forks: '01',
+            link: 'https://github.com/redtrib3/sploit-search'
+          },
+          {
+            title: 'Stocks-Crypto API',
+            stack: 'Python [FastAPI]',
+            desc: ' GET the real time Stocks/Crypto Information using this API',
+            stars: '00',
+            forks: '00',
+            link: 'https://github.com/redtrib3/stocks-API'
+          },
+          {
+            title: 'Spylogger',
+            stack: 'Python',
+            desc: 'Spylogger is a keylogger for windows OS that captures the keystrokes and send it to your gmail after every 100 characters typed.',
+            stars: '01',
+            forks: '01',
+            link: 'https://github.com/redtrib3/Spylogger'
+          }
+        ]
+      };
+    }
+}
+
+</script>
+

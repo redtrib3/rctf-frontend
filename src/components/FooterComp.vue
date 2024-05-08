@@ -9,7 +9,7 @@
                 
                 <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
                     <li>
-                        <a href="#" class="hover:text-white me-4 md:me-6">MIT License</a>
+                        <a href="#" class="hover:text-white me-4 md:me-6">License</a>
                     </li>
                     <li>
                         <a href="#" class="hover:text-white">View source</a>
