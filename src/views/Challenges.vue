@@ -22,6 +22,31 @@ components: {
   Modal
 },
 
+
+// client side js to be injected to DOM
+mounted(){
+  const dropdownButton = document.getElementById("dropdownBgHoverButton");
+  const dropdownMenu = document.getElementById("dropdownBgHover");
+  const filterByTypeBtn = document.getElementById("filterByTypeBtn");
+  const filterByTypeMenus = document.getElementById("filterByTypeMenus");
+  filterByTypeBtn.addEventListener("click", () => {
+    filterByTypeMenus.classList.toggle("hidden");
+  });
+  dropdownButton.addEventListener("click", () => {
+    dropdownMenu.classList.toggle("hidden");
+  });
+
+  // Close the dropdown menu when clicking outside of it
+  document.addEventListener("click", (event) => {
+    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+      dropdownMenu.classList.add("hidden");
+    }
+    if (!filterByTypeBtn.contains(event.target) && !filterByTypeMenus.contains(event.target)) {
+      filterByTypeMenus.classList.add("hidden");
+    }
+  });
+},
+
 data(){
   return {
 

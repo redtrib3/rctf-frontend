@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenges </title>
+    <style>
+        body {
+            background-color: #111827;
+        }
+    </style>
 <!--    <link rel="stylesheet" href="./style.css">-->
 </head>
 
@@ -12,42 +17,6 @@
         
 </body>
 
-<script>
-
-    document.addEventListener("DOMContentLoaded", function() {
-        // filterByDiff
-        const dropdownButton = document.getElementById("dropdownBgHoverButton");
-        const dropdownMenu = document.getElementById("dropdownBgHover");
-
-        //filterByType
-        const filterByTypeBtn = document.getElementById("filterByTypeBtn");
-        const filterByTypeMenus = document.getElementById("filterByTypeMenus");
-
-        
-        filterByTypeBtn.addEventListener("click", function() {
-            filterByTypeMenus.classList.toggle("hidden");
-
-        });
-
-        
-        dropdownButton.addEventListener("click", function() {
-            dropdownMenu.classList.toggle("hidden");
-        });
-
-        // Close the dropdown menu when clicking outside of it
-        document.addEventListener("click", function(event) {
-            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)){
-                dropdownMenu.classList.add("hidden");
-
-            if (!filterByTypeBtn.contains(event.target) && !filterByTypeMenus.contains(event.target)) {
-                filterByTypeMenus.classList.add("hidden");
-            }
-        }
-    });
-});
-
-
-</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
 </html>

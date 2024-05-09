@@ -1,30 +1,9 @@
 <template>
 
-<!--Side nav-->
-<aside  class="fixed left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" >
-   <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-      <ul class="space-y-2 font-medium">
-<!-- 
-         <li v-for="(item, index) in projects" :key="index">
-            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-               <span class="ms-3">{{ item.title }}</span>
-            </a>
-         </li> -->
-         
-         <div class="text-gray-400 text-xl font-sans ">Skills</div>
-         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-
-         <div  class="flex flex-wrap">
-                <span v-for="(skill, index) in skillsArray" :key="index" class="bg-gray-900 m-1  text-xs font-medium me-2 px-2.5 py-0.5 rounded  dark:text-gray-300">{{ skill }}</span>
-         </div>
-
-      </ul>
-   </div>
-</aside>
-
+<SideNav />
 <!--Content-->
 <div  class="p-2 sm:ml-64" >
-  
+
   <div class="bg-gray-900  text-white px-4 py-10 relative">
     <div class="container mx-auto">
         <h1 class="text-3xl md:text-3xl lg:text-4xl font-bold font-mono  ml-4">Projects</h1>
@@ -33,7 +12,7 @@
 
   <a  v-for="(proj, index) in projects" :key="index" title="Click to view" :href="proj.link" target="_blank">
     <div  class="cursor-pointer max-w p-6 bg-white border border-gray-200 rounded-lg mx-4 my-4 shadow dark:bg-gray-800 dark:border-gray-700 hover:translate-y-[-4px] transform transition duration-300 relative">
-    
+
             <h5 class="text-2xl  font-bold tracking-tight text-gray-900 dark:text-gray-100 ">{{  proj.title  }}</h5>
             <p class="text-sm pb-4 text-gray-400 font-mono transition duration-200">{{ proj.stack }}</p>
         <div>
@@ -51,7 +30,7 @@
               <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
             </svg>
           </div>
-        </div>  
+        </div>
     </div>
   </a>
 
@@ -61,8 +40,6 @@
     </button>
   </a>
 
-
-
   <FooterComp/>
 </div>
 
@@ -71,26 +48,17 @@
 <script>
 
 import FooterComp from '@/components/FooterComp.vue';
+import SideNav from '@/components/SideNav.vue';
 
 export default {
     name: 'Projects',
     components: {
-      FooterComp
+      FooterComp,
+      SideNav
     },
     data() {
       return {
-        skillsArray:  [
-              'Python',
-              'Nodejs',
-              'ExpressJS',
-              'VueJS',
-              'GNU/Linux',
-              'Capture-the-flag',
-              'Docker',
-              'Django',
-              'Flask',
-              'MongoDB'
-        ],
+
         projects: [
           {
             title: 'Brutal-FX',
