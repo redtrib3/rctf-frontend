@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: "AnonymousPro";
+    src: url('../../public/fonts/AnonymousPro-Regular.ttf');
+}
+
+::selection {
+    background-color: #1851CD;
+}

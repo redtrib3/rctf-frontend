@@ -2,7 +2,7 @@
   
 <nav class="sticky top-0 z-50 shadow-lg bg-gray-900 text-white w-screen border-gray-200 dark:bg-gray-900 backdrop-blur-xl supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75">
   <div class="flex flex-wrap items-center justify-between mx-auto p-4 px-5 xl:px-12 py-6 w-full">
-    <a href="/" id="brand-head" class="flex items-center space-x-3 rtl:space-x-reverse text-2xl font-bold font-heading transition duration-1000 ease-out hover:text-lime-400">
+    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse text-2xl font-bold font-heading font-anonymouspro transition duration-1000 ease-out hover:text-lime-400">
       redtrib3
     </a>
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -54,10 +54,4 @@ export default {
 
 </script>
 
-<style>
 
-#brand-head {
-    font-family: 'Anonymous Pro', monospace;
-}
-
-</style>

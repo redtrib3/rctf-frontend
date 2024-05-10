@@ -3,8 +3,17 @@ import Challenges from '../views/Challenges.vue'
 import NotFound from '../views/404.vue'
 import Socials from '../views/Socials.vue';
 import Projects from '../views/Projects.vue';
+import Homepage from '../views/Homepage.vue';
 
 const routes = [
+  {
+    path: '/',
+    name: 'Hompage',
+    component: Homepage,
+    meta: {
+      hideFooter: true
+    }
+  },
   {
     path: '/challenges',
     name: 'Challenges',
@@ -13,7 +22,10 @@ const routes = [
   {
     path: '/socials',
     name: 'Socials',
-    component: Socials
+    component: Socials,
+    meta: {
+      hideFooter: true
+    }
   },
   {
     path: '/projects',
