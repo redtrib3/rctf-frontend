@@ -23,7 +23,7 @@ components: {
 },
 
 
-// client side js to be injected to DOM
+// client side js to control filter dropdowns
 mounted(){
   const dropdownButton = document.getElementById("dropdownBgHoverButton");
   const dropdownMenu = document.getElementById("dropdownBgHover");

@@ -2,6 +2,8 @@
 
 <!-- Main modal -->
 <div  class="flex backdrop-blur-sm transition-colors  supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75  overflow-y-auto overflow-x-hidden fixed top-0 left-0 right-0 z-50 justify-center items-center w-full h-full md:inset-0  max-h-screen">
+    
+
     <div class="relative p-4 w-full max-w-2xl max-h-full ">
         <!-- Modal content -->
         <div class="relative rounded-lg shadow-lg bg-gray-900 bg-opacity-1">
@@ -49,25 +51,55 @@
             <!-- Modal footer -->
         <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
             <!-- Input -->
-            <input type="text"  class="rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:outline-none" placeholder="Flag: rctf{...}">
+            <input v-model="userFlag" type="text"  class="rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:outline-none" placeholder="Flag: rctf{...}">
             <!-- Submit Button -->
-            <button  type="button" class="text-white bg-teal-700 hover:bg-teal-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-1 dark:bg-teal-600 dark:hover:bg-teal-800 dark:focus:ring-teal-800 dark:focus:outline-none">Submit</button>
+            <button  @click="submitFlag" type="button" class="text-white bg-teal-700 hover:bg-teal-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-1 dark:bg-teal-600 dark:hover:bg-teal-800 dark:focus:ring-teal-800 dark:focus:outline-none">Submit</button>
             <!-- Hint Button -->
-             <button v-if="challengeData.hint" type="button" class="text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-1 dark:bg-yellow-300 dark:hover:bg-yellow-400 dark:focus:ring-yellow-500">Hint</button>
+            
+             <button @click="showHint" v-if="challengeData.hint" type="button" class="text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-1 dark:bg-yellow-300 dark:hover:bg-yellow-400 dark:focus:ring-yellow-500">Hint</button>
 
         </div>
         </div>
     </div>
+
+    <!--Toast-->
+    <Toast v-if="showToast" :message="challengeData.hint"/>
+
+
 </div>
+
+
 
 </template>
 
 <script>
+import Toast from '@/components/Toast.vue';
+
 export default {
     name: 'Modal',
-
+    components: { Toast },
     props: {
         challengeData: Object
+    },
+    
+    data(){
+        return {
+            showToast: false,
+            userFlag: ''
+        }
+    },
+
+    methods:{
+        showHint(){
+            this.showToast  = true;
+            setTimeout(()=>{
+                this.showToast = false;
+            }, 5000);
+        },
+
+        submitFlag(){
+            
+        }
     }
 }
 </script>

@@ -11,19 +11,24 @@ const routes = [
     name: 'Hompage',
     component: Homepage,
     meta: {
+      title: 'redtrib3.me',
       hideFooter: true
     }
   },
   {
     path: '/challenges',
     name: 'Challenges',
-    component: Challenges
+    component: Challenges,
+    meta: {
+      title: 'Challenges - redtrib3',
+    }
   },
   {
     path: '/socials',
     name: 'Socials',
     component: Socials,
     meta: {
+      title: 'Socials - redtrib3',
       hideFooter: true
     }
   },
@@ -32,6 +37,7 @@ const routes = [
     name:  'Projects',
     component: Projects,
     meta: {
+      title: 'My Projects - socials',
       hideFooter: true
     }
   },
@@ -39,13 +45,21 @@ const routes = [
   {
     path: '/:catchAll(.*)',
     name: 'Not-Found',
-    component: NotFound
+    component: NotFound,
+    meta: {
+      hideFooter: true,
+      title: 'Not Found'
+    }
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from) => {
+  document.title = to.meta?.title ?? 'redtrib3'
 })
 
 export default router

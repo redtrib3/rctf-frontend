@@ -19,7 +19,7 @@
       <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-transparent md:dark:bg-transparent dark:border-gray-700">
 
         <li>
-          <router-link to="/writeups"  active-class="text-lime-400" class="hover:bg-blue-800 md:hover:bg-transparent block py-2 px-3 md:p-0 md:font-bold" aria-current="page">Writeups</router-link>
+          <a href="//blog.redtrib3.me" class="hover:bg-blue-800 md:hover:bg-transparent block py-2 px-3 md:p-0 md:font-bold">Writeups</a>        
         </li>
         
         <li>
