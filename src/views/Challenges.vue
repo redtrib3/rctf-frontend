@@ -54,6 +54,7 @@ data(){
     currChallData: null,
     challenges : [
     {
+      id: 1350,
       title: "Pipeline",
       type: "Web",
       difficulty: "Hard",
@@ -62,7 +63,8 @@ data(){
       attachmentLink: null,
       externalLink: "http://google.com"
     },
-  {
+    {
+      id: 1351,
       title: "Gobsufucated",
       type: "Reversing",
       difficulty: "Medium",
@@ -70,8 +72,9 @@ data(){
       desc: " Walking is a simple yet effective way to improve your health. Not only is it a great form of low-impact exercise that can prevent witches from hexing you, but it can also make you touch grass. Go ahead, Take a walk! ",
       attachmentLink: "http://redtrib3.me/file",
       externalLink: null
-  },
-  {
+    },
+    {
+      id: 103,
       title: "Gutty Mystery",
       type: "OSINT",
       difficulty: "Easy",
@@ -79,8 +82,9 @@ data(){
       desc: " Looking for answers? Look no further! Crush search, the ultimate Crush-search engine , is here to help. Just type in your crush's name and discover a world of information at your fingertips, even the phone number!. Fast, reliable, and easy to use, Don't waste time, start Crushing today! ",
       attachmentLink: null,
       externalLink: null
-  },
-  {
+    },
+    {
+      id: 104,
       title: "Gutty 2",
       type: "OSINT",
       difficulty: "Medium",
@@ -88,7 +92,7 @@ data(){
       desc: " The Web-Times has requested a black box pentest. As a pentester, find ways to exploit the server and retrive the flag. ",
       attachmentLink: null,
       externalLink: "http://google.com.1"
-  }
+    }
   ],
       filteredTypes: [],
       filteredDiff: [],

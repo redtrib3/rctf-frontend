@@ -51,11 +51,10 @@
             <!-- Modal footer -->
         <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
             <!-- Input -->
-            <input v-model="userFlag" type="text"  class="rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:outline-none" placeholder="Flag: rctf{...}">
+            <input v-model="userFlag" type="text" class="rounded-none rounded-l-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-gray-700 border-none dark:placeholder-gray-400 dark:text-white dark:focus:outline-none" placeholder="Flag: rctf{...}">
             <!-- Submit Button -->
             <button  @click="submitFlag" type="button" class="text-white bg-teal-700 hover:bg-teal-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-1 dark:bg-teal-600 dark:hover:bg-teal-800 dark:focus:ring-teal-800 dark:focus:outline-none">Submit</button>
-            <!-- Hint Button -->
-            
+            <!-- Hint Button -->            
              <button @click="showHint" v-if="challengeData.hint" type="button" class="text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-1 dark:bg-yellow-300 dark:hover:bg-yellow-400 dark:focus:ring-yellow-500">Hint</button>
 
         </div>
@@ -63,8 +62,8 @@
     </div>
 
     <!--Toast-->
-    <Toast v-if="showToast" :message="challengeData.hint"/>
-
+    <Toast v-if="showHintToast" :message="challengeData.hint"/>
+    <Toast v-if="showRespToast" :message="respToastMsg" />
 
 </div>
 
@@ -84,21 +83,55 @@ export default {
     
     data(){
         return {
-            showToast: false,
-            userFlag: ''
+            showRespToast: false,
+            respToastMsg: '',
+            showHintToast: false,
+            userFlag: '',
         }
     },
 
     methods:{
+
+
         showHint(){
-            this.showToast  = true;
+            this.showHintToast  = true;
             setTimeout(()=>{
-                this.showToast = false;
+                this.showHintToast = false;
             }, 5000);
         },
 
-        submitFlag(){
-            
+        showResponse(message){
+            this.respToastMsg = message;
+            this.showRespToast = true;
+            setTimeout(() => {
+                this.showRespToast = false;
+            }, 5000);
+        },
+
+        async submitFlag() {
+            try {
+                const response = await fetch('http://127.0.0.1:3000/api/submit-flag', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        chal_id: this.challengeData.id, //change
+                        flag: this.userFlag.trim() 
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success){
+                    this.showResponse('Yay, Correct Flag');
+                } else {
+                    this.showResponse('Wrong flag, Try again');
+                }
+
+            } catch (error) {
+                this.response = 'error';
+                console.error('Error submitting flag:', error);
+            }
         }
     }
 }
