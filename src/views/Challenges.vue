@@ -7,101 +7,52 @@
       <ChallCard v-for="(chall, index) in filteredChallenges" :key="index" :challJson="chall" @show-modal-event="ShowModal"/>
   </div>
   <Modal v-if="ModalPopup" :challengeData="currChallData" @closeModal="closeModal()"/>
+  
+  <Pagination :pageSetlength="pageSet.length" @page-clicked="setPage" />
 </template>
 
 <script>
 import HeroBanner from '@/components/HeroBanner.vue';
 import ChallCard from '@/components/ChallCard.vue';
 import Modal from '@/components/Modal.vue';
+import Pagination from '@/components/Pagination.vue';
 
 export default {
 name: 'App',
 components: {
   HeroBanner,
   ChallCard,
-  Modal
-},
-
-
-// client side js to control filter dropdowns
-mounted(){
-  const dropdownButton = document.getElementById("dropdownBgHoverButton");
-  const dropdownMenu = document.getElementById("dropdownBgHover");
-  const filterByTypeBtn = document.getElementById("filterByTypeBtn");
-  const filterByTypeMenus = document.getElementById("filterByTypeMenus");
-  filterByTypeBtn.addEventListener("click", () => {
-    filterByTypeMenus.classList.toggle("hidden");
-  });
-  dropdownButton.addEventListener("click", () => {
-    dropdownMenu.classList.toggle("hidden");
-  });
-
-  // Close the dropdown menu when clicking outside of it
-  document.addEventListener("click", (event) => {
-    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-      dropdownMenu.classList.add("hidden");
-    }
-    if (!filterByTypeBtn.contains(event.target) && !filterByTypeMenus.contains(event.target)) {
-      filterByTypeMenus.classList.add("hidden");
-    }
-  });
+  Modal,
+  Pagination
 },
 
 data(){
-  return {
-
-    ModalPopup: false,
-    currChallData: null,
-    challenges : [
-    {
-      id: 1350,
-      title: "Pipeline",
-      type: "Web",
-      difficulty: "Hard",
-      desc: " A house keeper who has to take care of many people at once “Man am I lucky to have a Nano!” ",
-      hint: null,
-      attachmentLink: null,
-      externalLink: "http://google.com"
-    },
-    {
-      id: 1351,
-      title: "Gobsufucated",
-      type: "Reversing",
-      difficulty: "Medium",
-      hint: null,
-      desc: " Walking is a simple yet effective way to improve your health. Not only is it a great form of low-impact exercise that can prevent witches from hexing you, but it can also make you touch grass. Go ahead, Take a walk! ",
-      attachmentLink: "http://redtrib3.me/file",
-      externalLink: null
-    },
-    {
-      id: 103,
-      title: "Gutty Mystery",
-      type: "OSINT",
-      difficulty: "Easy",
-      hint: "The hint is life around you",
-      desc: " Looking for answers? Look no further! Crush search, the ultimate Crush-search engine , is here to help. Just type in your crush's name and discover a world of information at your fingertips, even the phone number!. Fast, reliable, and easy to use, Don't waste time, start Crushing today! ",
-      attachmentLink: null,
-      externalLink: null
-    },
-    {
-      id: 104,
-      title: "Gutty 2",
-      type: "OSINT",
-      difficulty: "Medium",
-      hint: "This another hint btw.",
-      desc: " The Web-Times has requested a black box pentest. As a pentester, find ways to exploit the server and retrive the flag. ",
-      attachmentLink: null,
-      externalLink: "http://google.com.1"
-    }
-  ],
+    return {
+    
+      ModalPopup: false,
+      currChallData: null,
+      allChallenges: null,
+      pageSet: [],
+      currChallSet: [],
       filteredTypes: [],
       filteredDiff: [],
-  };
+    };
+  },
+
+
+// fetch challenges from backend, and setup pages.
+mounted(){
+  this.fetchChallenges().then(pages => {
+    this.pageSet = pages;
+    this.currChallSet = pages[0];
+  });
 },
+
 computed: {
   
   filteredChallenges() {
-    return this.challenges.filter(chall => {
+    // return this.allChallenges.filter(chall => {
+     return this.currChallSet.filter(chall => {
       // Filter by type
       const typeFiltered = this.filteredTypes.length === 0 || this.filteredTypes.includes(chall.type);
       // Filter by difficulty
@@ -110,7 +61,69 @@ computed: {
     });
   }
 },
+
+
 methods: {
+
+  setPage(pageNo){
+    this.currChallSet = this.pageSet[pageNo-1];
+
+  },
+
+  isExpired(timestamp, ttl) {
+    if(!timestamp){
+      return true;
+    }
+
+    const old = new Date(timestamp).getTime();
+    const now = new Date().getTime();
+
+    // if ttl is hit
+    return Math.abs(now-old) >= ttl;
+  },
+
+  /* 
+   Fetch challenges from backend 
+   and set allChallenges as that.
+  */
+  async fetchChallenges(){
+
+    const CACHE_EXPIRY = 600000; // 10 minutes
+    const cache = JSON.parse(localStorage.getItem('cache')) || null;
+    
+    if (!cache || this.isExpired(cache.timestamp, CACHE_EXPIRY)){
+      
+      try {
+
+        const response = await fetch('http://127.0.0.1:3000/api/challenges');
+        const data = await response.json();
+        //cache challenges
+        const localData = { challenges: data, timestamp: new Date().toISOString() };
+        localStorage.setItem('cache', JSON.stringify(localData));
+
+        this.allChallenges = data;
+
+      } catch (error){
+          console.error(error); 
+      }
+
+      return this.divideChallenges(this.allChallenges, 6);
+    }
+    
+    this.allChallenges = cache.challenges;
+    return this.divideChallenges(this.allChallenges, 6);
+     
+  },
+
+  divideChallenges(allchallengeArray, pageSize){
+    let pages = []
+    for(let i=0 ; i< allchallengeArray.length; i+=pageSize){
+        let page = allchallengeArray.slice(i, i + pageSize);
+        pages.push(page);
+    }
+    
+    return pages
+  },
 
   ShowModal(challengeData){
     this.currChallData = challengeData;
@@ -134,10 +147,6 @@ methods: {
 </script>
 
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap');
-
 
 
 body {
