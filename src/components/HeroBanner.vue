@@ -55,7 +55,7 @@ export default {
     name: 'HeroBanner',
     data(){
         return {
-            challTypes: ['Web', 'Forensics', 'Crypto', 'Reversing','OSINT', 'Misc'],
+            challTypes: ['Web', 'Forensics', 'Cryptography', 'Reversing', 'OSINT', 'Miscellaneous'],
             challDiffs: ['Easy', 'Medium', 'Hard'],
             filteredTypes: [],
             filteredDiff: []

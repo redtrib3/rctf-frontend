@@ -4,9 +4,9 @@
   <h1 v-if="filteredChallenges.length === 0" class="flex justify-center font-bold font-mono m-5 text-gray-500" >No results found.</h1>
   
   <div  class="ml-8 mr-8 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 justify-items-start">
-      <ChallCard v-for="(chall, index) in filteredChallenges" :key="index" :challJson="chall" @show-modal-event="ShowModal"/>
+      <ChallCard :solvedChalls="solvedChalls" v-for="(chall, index) in filteredChallenges" :key="index" :challJson="chall" @show-modal-event="ShowModal"/>
   </div>
-  <Modal v-if="ModalPopup" :challengeData="currChallData" @closeModal="closeModal()"/>
+  <Modal v-if="ModalPopup" :challengeData="currChallData" @challenge-solved="handleChallSolve" @closeModal="closeModal()"/>
   
   <Pagination :pageSetlength="pageSet.length" @page-clicked="setPage" />
 </template>
@@ -31,11 +31,12 @@ data(){
     
       ModalPopup: false,
       currChallData: null,
-      allChallenges: null,
+      allChallenges: [],
+      solvedChalls: [],
       pageSet: [],
       currChallSet: [],
       filteredTypes: [],
-      filteredDiff: [],
+      filteredDiff: []
     };
   },
 
@@ -65,6 +66,10 @@ computed: {
 
 methods: {
 
+  handleChallSolve(challId){
+    this.solvedChalls.push(challId);
+  },
+
   setPage(pageNo){
     this.currChallSet = this.pageSet[pageNo-1];
 
@@ -82,38 +87,33 @@ methods: {
     return Math.abs(now-old) >= ttl;
   },
 
-  /* 
-   Fetch challenges from backend 
-   and set allChallenges as that.
-  */
-  async fetchChallenges(){
 
+  async fetchChallenges() {
     const CACHE_EXPIRY = 600000; // 10 minutes
-    const cache = JSON.parse(localStorage.getItem('cache')) || null;
-    
-    if (!cache || this.isExpired(cache.timestamp, CACHE_EXPIRY)){
-      
-      try {
 
-        const response = await fetch('http://127.0.0.1:3000/api/challenges');
-        const data = await response.json();
-        //cache challenges
-        const localData = { challenges: data, timestamp: new Date().toISOString() };
-        localStorage.setItem('cache', JSON.stringify(localData));
+    try {
+        const cache = JSON.parse(localStorage.getItem('cache'));
 
-        this.allChallenges = data;
+        if (!cache || this.isExpired(cache.timestamp, CACHE_EXPIRY)) {
+            const response = await fetch('http://127.0.0.1:3000/api/challenges');
+            const data = await response.json();
 
-      } catch (error){
-          console.error(error); 
-      }
+            const localData = { challenges: data, timestamp: new Date().toISOString() };
+            localStorage.setItem('cache', JSON.stringify(localData));
 
-      return this.divideChallenges(this.allChallenges, 6);
+            this.allChallenges = data;
+        } else {
+            this.allChallenges = cache.challenges;
+        }
+
+        return this.divideChallenges(this.allChallenges, 6);
+
+    } catch (error) {
+        console.error('Error fetching challenges:', error);
+        return [];
     }
-    
-    this.allChallenges = cache.challenges;
-    return this.divideChallenges(this.allChallenges, 6);
-     
   },
+
 
   divideChallenges(allchallengeArray, pageSize){
     let pages = []
