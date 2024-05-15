@@ -30,7 +30,7 @@
             <!-- Modal body -->
             <div class="p-4 md:p-5 space-y-4">
                 <p class="text-base leading-relaxed text-gray-300 font-bold">Description</p>
-                <p class="text-base pb-4 leading-relaxed text-gray-500 dark:text-gray-400">
+                <p class="text-base  pb-10 leading-relaxed text-gray-500 dark:text-gray-400">
                     {{ challengeData.desc }}
                 </p>
                     <!--Attachment button v-if challenge has attachment link-->

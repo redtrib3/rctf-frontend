@@ -1,7 +1,9 @@
 <template>
+  <h1>{{  abcd  }}</h1>
   <HeroBanner  @update-filtered-types="updateFilteredTypes" @update-filtered-diff="updateFilteredDiff" />
   
-  <h1 v-if="filteredChallenges.length === 0" class="flex justify-center font-bold font-mono m-5 text-gray-500" >No results found.</h1>
+  <h1 v-if="!filteredChallenges" class="flex justify-center font-bold font-mono m-5 text-gray-500" >No results found.</h1>
+
   
   <div  class="ml-8 mr-8 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 justify-items-start">
       <ChallCard :solvedChalls="solvedChalls" v-for="(chall, index) in filteredChallenges" :key="index" :challJson="chall" @show-modal-event="ShowModal"/>
@@ -9,6 +11,8 @@
   <Modal v-if="ModalPopup" :challengeData="currChallData" @challenge-solved="handleChallSolve" @closeModal="closeModal()"/>
   
   <Pagination :pageSetlength="pageSet.length" @page-clicked="setPage" />
+
+
 </template>
 
 <script>
@@ -16,6 +20,7 @@ import HeroBanner from '@/components/HeroBanner.vue';
 import ChallCard from '@/components/ChallCard.vue';
 import Modal from '@/components/Modal.vue';
 import Pagination from '@/components/Pagination.vue';
+
 
 export default {
 name: 'App',
@@ -36,7 +41,8 @@ data(){
       pageSet: [],
       currChallSet: [],
       filteredTypes: [],
-      filteredDiff: []
+      filteredDiff: [],
+      currPageNo: 0
     };
   },
 
@@ -52,26 +58,34 @@ mounted(){
 computed: {
   
   filteredChallenges() {
-    // return this.allChallenges.filter(chall => {
-     return this.currChallSet.filter(chall => {
+
+      // is the backend running?
+     let filteredChalls =  this.allChallenges.filter(chall => {
       // Filter by type
       const typeFiltered = this.filteredTypes.length === 0 || this.filteredTypes.includes(chall.type);
       // Filter by difficulty
       const diffFiltered = this.filteredDiff.length === 0 || this.filteredDiff.includes(chall.difficulty);
       return typeFiltered && diffFiltered;
     });
+
+    // divide the filtered all challs into pages, 6 each.
+    filteredChalls = this.divideChallenges(filteredChalls, 6);
+    return filteredChalls[this.currPageNo];
   }
 },
 
 
 methods: {
 
+  // event handler for modal challenge-solved event.
   handleChallSolve(challId){
     this.solvedChalls.push(challId);
   },
 
+  // set the current page
   setPage(pageNo){
     this.currChallSet = this.pageSet[pageNo-1];
+    this.currPageNo = pageNo-1;
 
   },
 
@@ -96,8 +110,7 @@ methods: {
 
         if (!cache || this.isExpired(cache.timestamp, CACHE_EXPIRY)) {
             const response = await fetch('http://127.0.0.1:3000/api/challenges');
-            const data = await response.json();
-
+            let data = await response.json();
             const localData = { challenges: data, timestamp: new Date().toISOString() };
             localStorage.setItem('cache', JSON.stringify(localData));
 
@@ -114,7 +127,7 @@ methods: {
     }
   },
 
-
+  // divide challenge array into pages, 6 per pg.
   divideChallenges(allchallengeArray, pageSize){
     let pages = []
     for(let i=0 ; i< allchallengeArray.length; i+=pageSize){
