@@ -12,7 +12,7 @@
                 <p class="text-sm pb-6 text-gray-400 font-mono transition duration-200">{{ challJson.type }} - {{ challJson.difficulty }}</p>
             </a>
             <div class="p-2">
-                <p class="font-normal text-gray-700 dark:text-gray-400 text-sm pb-4 line-clamp-2" >{{ padDesc(challJson.desc) }}</p>
+                <p class="font-normal text-gray-700 dark:text-gray-400 text-sm pb-4 line-clamp-2" v-html="padDesc(challJson.desc)"></p>
             </div>
             <button @click="showModal" class="mt-4 bottom-2 left-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center bg-green-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                 Solve
@@ -35,7 +35,7 @@ export default {
             this.$emit('show-modal-event', this.challJson);
         },
         padDesc(desc) {
-            return desc.padEnd(161,' sit amet consectetur adipisicing elit. Quasi amet fuga dolorum cupiditate iusto, exercitationem quibusdam.');
+            return desc.padEnd(161,' Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.');
         }
     }
 

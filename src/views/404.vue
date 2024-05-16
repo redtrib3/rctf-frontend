@@ -5,7 +5,7 @@
             <h1 class="font-anonymouspro text-9xl  lg:font-bold lg:text-8xl ">404</h1>
             <p class="font-anonymouspro  mb-4 text-3xl text-gray-900 md:text-4xl dark:text-white">Not found</p>
             <p class="mb-4 text-md font-light text-gray-500 dark:text-gray-400">Is this what they call the Dark web?</p>
-            <router-link to="/"><button class="inline-flex text-white bg-green-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4">Back to Homepage</button></router-link>
+            <router-link to="/"><button class="inline-flex text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center my-4">Back to home</button></router-link>
         </div>   
     </div>
 </section>

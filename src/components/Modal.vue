@@ -30,9 +30,13 @@
             <!-- Modal body -->
             <div class="p-4 md:p-5 space-y-4">
                 <p class="text-base leading-relaxed text-gray-300 font-bold">Description</p>
-                <p class="text-base  pb-10 leading-relaxed text-gray-500 dark:text-gray-400">
-                    {{ challengeData.desc }}
-                </p>
+                <p class="text-base  pb-4 leading-relaxed text-gray-500 dark:text-gray-400" v-html="challengeData.desc"></p>
+
+
+                <div v-if="challengeData.codeSnippets" v-for="(snippet, index) in challengeData.codeSnippets" :key="index">
+                    <codeSnippet :code="snippet" />
+                </div>
+
                     <!--Attachment button v-if challenge has attachment link-->
                     <a v-if="challengeData.attachmentLink" :href="challengeData.attachmentLink" type="button" class="inline-flex items-center text-center py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
 
@@ -78,8 +82,8 @@
     </div>
 
     <!--Toast-->
-    <Toast v-show="showHintToast" :message="challengeData.hint" state="warning"/>
-    <Toast v-show="showRespToast" :message="respToastMsg" :state="responseTheme"/>
+    <Toast v-if="showHintToast" :message="challengeData.hint" state="hint"/>
+    <Toast v-if="showRespToast" :message="respToastMsg" :state="responseTheme"/>
 
 </div>
 
@@ -89,10 +93,11 @@
 
 <script>
 import Toast from '@/components/Toast.vue';
+import codeSnippet from '@/components/codeSnippet.vue';
 
 export default {
     name: 'Modal',
-    components: { Toast },
+    components: { Toast, codeSnippet },
     props: {
         challengeData: Object
     },
@@ -127,7 +132,7 @@ export default {
             
             setTimeout(() => {
                 this.showRespToast = false;
-            }, 5000);
+            }, 3000);
         },
 
         challengeCompleted(challId){
@@ -138,7 +143,7 @@ export default {
         async submitFlag() {
             
             if (this.userFlag.trim() === '') {
-                this.showResponse('Cannot send empty flag!', 'warning');
+                this.showResponse('Flag field cannot be empty.', 'warning');
                 return;
             }
 
@@ -151,7 +156,7 @@ export default {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ 
-                        chal_id: this.challengeData.id, //change
+                        chal_id: this.challengeData.id, 
                         flag: this.userFlag.trim() 
                     })
                 });
@@ -177,7 +182,7 @@ export default {
             
             setTimeout(() => {
                 this.BtnIsLoading = false;
-            }, 1500);
+            }, 2500);
 
             
         }
