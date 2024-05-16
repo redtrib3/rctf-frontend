@@ -4,7 +4,7 @@
 <div  class="flex backdrop-blur-sm transition-colors  supports-backdrop-blur:bg-white/95 dark:bg-slate-900/75  overflow-y-auto overflow-x-hidden fixed top-0 left-0 right-0 z-50 justify-center items-center w-full h-full md:inset-0  max-h-screen">
     
 
-    <div class="relative p-4 w-full max-w-2xl max-h-full ">
+    <div class="animate-fadeIn relative p-4 w-full max-w-2xl max-h-full ">
         <!-- Modal content -->
         <div class="relative rounded-lg shadow-lg bg-gray-900 bg-opacity-1">
             <!-- Modal header -->
@@ -78,8 +78,8 @@
     </div>
 
     <!--Toast-->
-    <Toast v-if="showHintToast" :message="challengeData.hint" state="warning"/>
-    <Toast v-if="showRespToast" :message="respToastMsg" :state="responseTheme"/>
+    <Toast v-show="showHintToast" :message="challengeData.hint" state="warning"/>
+    <Toast v-show="showRespToast" :message="respToastMsg" :state="responseTheme"/>
 
 </div>
 
@@ -96,7 +96,7 @@ export default {
     props: {
         challengeData: Object
     },
-    
+
     data(){
         return {
             showRespToast: false,
@@ -120,9 +120,11 @@ export default {
             }, 5000);
         },
 
-        showResponse(message){
-            this.respToastMsg = message;
+        showResponse(message, theme){
             this.showRespToast = true;
+            this.respToastMsg = message;
+            this.responseTheme = theme;
+            
             setTimeout(() => {
                 this.showRespToast = false;
             }, 5000);
@@ -135,6 +137,11 @@ export default {
 
         async submitFlag() {
             
+            if (this.userFlag.trim() === '') {
+                this.showResponse('Cannot send empty flag!', 'warning');
+                return;
+            }
+
             this.BtnIsLoading = true;
 
             try {
@@ -151,29 +158,27 @@ export default {
 
                 const data = await response.json();
                 if (data.success){
-                    this.showResponse('Yay, Correct Flag');
-                    this.responseTheme = 'success';
+                    this.showResponse('Yay, Correct Flag', 'success');
                     this.BtnIsDisabled = true;
                     
                     this.challengeCompleted(this.challengeData.id);
 
                 } else {
-                    this.showResponse('Wrong flag, Try again');
-                    this.responseTheme = 'failure';
+                    this.showResponse('Wrong flag, Try again', 'failure');
                     this.userFlag = '';
                 }
 
                 
 
             } catch (error) {
-                this.showResponse('Some error occured');
-                this.responseTheme = 'failure';
+                this.showResponse('Some error occured', 'failure');
                 console.error('Error submitting flag:', error);
             }
             
             setTimeout(() => {
                 this.BtnIsLoading = false;
-            }, 1000);
+            }, 1500);
+
             
         }
     }

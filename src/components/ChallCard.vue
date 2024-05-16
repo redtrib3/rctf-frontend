@@ -1,6 +1,6 @@
 <template>
     
-        <div class="max-w-lg p-6  bg-white border border-gray-200 rounded-lg mx-4 my-4 shadow dark:bg-gray-800 dark:border-gray-700 hover:scale-95 transform transition duration-300 relative">
+        <div class="max-w-lg p-6 bg-white border border-gray-200 rounded-lg mx-4 my-4 shadow dark:bg-gray-800 dark:border-gray-700 hover:scale-95 transform transition duration-300 relative">
             <a>
 
                 <span class="flex">

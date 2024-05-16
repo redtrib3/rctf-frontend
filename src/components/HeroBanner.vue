@@ -7,6 +7,8 @@
     </div>
     
     <div class="absolute bottom-0 right-0 mb-4 mr-4">
+
+        
         <!--Filter by Difficulty -->
         <button type="button" id="dropdownBgHoverButton" data-dropdown-toggle="dropdownBgHover" class="inline-flex text-center text-white bg-gray-800 hover:bg-gray-900 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
             <span>Difficulty</span>
@@ -16,7 +18,7 @@
         </button>
 
         <!-- Dropdown menu -->
-        <div id="dropdownBgHover" class="absolute right-0 mt-2 z-10 hidden w-48 bg-white rounded-lg shadow dark:bg-gray-700">
+        <div id="dropdownBgHover" class="animate-fadeIn-quick absolute right-0 mt-2 z-10 hidden w-48 bg-white rounded-lg shadow dark:bg-gray-700">
             <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownBgHoverButton">
                 <li v-for="(diff, index) in challDiffs" :key="index">
                     <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
@@ -34,7 +36,7 @@
             </svg>
         </button>
         <!-- Dropdown menu -->
-        <div id="filterByTypeMenus" class="absolute right-0 mt-2 z-10 hidden w-48 bg-white rounded-lg shadow dark:bg-gray-700">
+        <div id="filterByTypeMenus" class="animate-fadeIn-quick absolute right-0 mt-2 z-10 hidden w-48 bg-white rounded-lg shadow dark:bg-gray-700">
             <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="filterByTypeBtn">
                 <li v-for="(type, index) in challTypes" :key="index">
                     <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">

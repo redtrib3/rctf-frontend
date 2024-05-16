@@ -2,7 +2,7 @@
 
 <SideNav />
 <!--Content-->
-<div  class="p-2 sm:ml-64" >
+<div  class="animate-fadeIn p-2 sm:ml-64" >
 
   <div class="bg-gray-900  text-white px-4 py-10 relative">
     <div class="container mx-auto">
@@ -41,6 +41,7 @@
   </a>
 
   <FooterComp/>
+  <ScrollToTop />
 </div>
 
 </template>
@@ -49,12 +50,14 @@
 
 import FooterComp from '@/components/FooterComp.vue';
 import SideNav from '@/components/SideNav.vue';
+import ScrollToTop from '@/components/ScrollToTop.vue';
 
 export default {
     name: 'Projects',
     components: {
       FooterComp,
-      SideNav
+      SideNav,
+      ScrollToTop 
     },
     data() {
       return {

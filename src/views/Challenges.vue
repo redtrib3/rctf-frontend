@@ -1,5 +1,4 @@
 <template>
-  <h1>{{  abcd  }}</h1>
   <HeroBanner  @update-filtered-types="updateFilteredTypes" @update-filtered-diff="updateFilteredDiff" />
   
   <h1 v-if="!filteredChallenges" class="flex justify-center font-bold font-mono m-5 text-gray-500" >No results found.</h1>
@@ -11,8 +10,7 @@
   <Modal v-if="ModalPopup" :challengeData="currChallData" @challenge-solved="handleChallSolve" @closeModal="closeModal()"/>
   
   <Pagination :pageSetlength="pageSet.length" @page-clicked="setPage" />
-
-
+  <ScrollToTop />
 </template>
 
 <script>
@@ -20,7 +18,7 @@ import HeroBanner from '@/components/HeroBanner.vue';
 import ChallCard from '@/components/ChallCard.vue';
 import Modal from '@/components/Modal.vue';
 import Pagination from '@/components/Pagination.vue';
-
+import ScrollToTop  from '@/components/ScrollToTop.vue';
 
 export default {
 name: 'App',
@@ -28,18 +26,19 @@ components: {
   HeroBanner,
   ChallCard,
   Modal,
-  Pagination
+  Pagination,
+  ScrollToTop
 },
 
 data(){
     return {
     
       ModalPopup: false,
-      currChallData: null,
-      allChallenges: [],
-      solvedChalls: [],
-      pageSet: [],
-      currChallSet: [],
+      currChallData: null,        // stores data for the currently selected Modal.
+      allChallenges: [], 
+      solvedChalls: [],         // keeps track of solved challenges.
+      pageSet: [],             // list of all pages [[{...}],[{...}] ...]
+      currChallSet: [],       // The currently shown page.
       filteredTypes: [],
       filteredDiff: [],
       currPageNo: 0
@@ -49,10 +48,12 @@ data(){
 
 // fetch challenges from backend, and setup pages.
 mounted(){
+
   this.fetchChallenges().then(pages => {
-    this.pageSet = pages;
+    this.pageSet = pages.reverse(); // latest first.
     this.currChallSet = pages[0];
   });
+
 },
 
 computed: {
@@ -79,7 +80,7 @@ methods: {
 
   // event handler for modal challenge-solved event.
   handleChallSolve(challId){
-    this.solvedChalls.push(challId);
+    this.solvedChalls.push(challId)
   },
 
   // set the current page
@@ -101,6 +102,7 @@ methods: {
     return Math.abs(now-old) >= ttl;
   },
 
+ 
 
   async fetchChallenges() {
     const CACHE_EXPIRY = 600000; // 10 minutes
@@ -111,7 +113,7 @@ methods: {
         if (!cache || this.isExpired(cache.timestamp, CACHE_EXPIRY)) {
             const response = await fetch('http://127.0.0.1:3000/api/challenges');
             let data = await response.json();
-            const localData = { challenges: data, timestamp: new Date().toISOString() };
+            const localData = { challenges: data.reverse(), timestamp: new Date().toISOString() };
             localStorage.setItem('cache', JSON.stringify(localData));
 
             this.allChallenges = data;
@@ -163,7 +165,6 @@ methods: {
 
 
 body {
-  animation: fadeInAnimation ease .9s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   font-family: 'Lato', serif;
