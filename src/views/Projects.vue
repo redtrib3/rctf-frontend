@@ -92,7 +92,7 @@ export default {
           const cache = JSON.parse(localStorage.getItem('proj-cache'));
 
           if (!cache || this.isExpired(cache.timestamp, CACHE_EXPIRY)) {
-              const response = await fetch('http://127.0.0.1:3000/api/projects');
+              const response = await fetch('/api/projects');
               let data = await response.json();
               const localData = { projects: data, timestamp: new Date().toISOString() };
               localStorage.setItem('proj-cache', JSON.stringify(localData));

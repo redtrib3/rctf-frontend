@@ -9,10 +9,10 @@
                 
                 <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
                     <li>
-                        <a href="#" class="hover:text-white me-4 md:me-6">License</a>
+                        <a href="https://raw.githubusercontent.com/redtrib3/rctf-server/main/LICENSE" class="hover:text-white me-4 md:me-6">License</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:text-white">View source</a>
+                        <a href="https://github.com/redtrib3/rctf-server" class="hover:text-white">View source</a>
                     </li>
                 </ul>
             </div>

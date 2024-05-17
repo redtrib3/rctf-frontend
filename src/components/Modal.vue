@@ -38,7 +38,7 @@
                 </div>
 
                     <!--Attachment button v-if challenge has attachment link-->
-                    <button v-if="challengeData.attachmentLink" @click="openLink(challengeData.attachmentLink, false)" :title="challengeData.attachmentLink.split('/')[3]"  class="inline-flex items-center text-center py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                    <button v-if="challengeData.attachmentLink" @click="openLink(challengeData.attachmentLink, true)" :title="challengeData.attachmentLink.split('/')[3]"  class="inline-flex items-center text-center py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
                             <path d="M8.75 2.75a.75.75 0 0 0-1.5 0v5.69L5.03 6.22a.75.75 0 0 0-1.06 1.06l3.5 3.5a.75.75 0 0 0 1.06 0l3.5-3.5a.75.75 0 0 0-1.06-1.06L8.75 8.44V2.75Z" />
@@ -157,7 +157,7 @@ export default {
             this.BtnIsLoading = true;
 
             try {
-                const response = await fetch('http://127.0.0.1:3000/api/submit-flag', {
+                const response = await fetch('/api/submit-flag', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
