@@ -108,13 +108,13 @@ methods: {
     const CACHE_EXPIRY = 600000; // 10 minutes
 
     try {
-        const cache = JSON.parse(localStorage.getItem('cache'));
+        const cache = JSON.parse(localStorage.getItem('chall-cache'));
 
         if (!cache || this.isExpired(cache.timestamp, CACHE_EXPIRY)) {
             const response = await fetch('http://127.0.0.1:3000/api/challenges');
             let data = await response.json();
             const localData = { challenges: data.reverse(), timestamp: new Date().toISOString() };
-            localStorage.setItem('cache', JSON.stringify(localData));
+            localStorage.setItem('chall-cache', JSON.stringify(localData));
 
             this.allChallenges = data;
         } else {
@@ -165,19 +165,13 @@ methods: {
 
 
 body {
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
   font-family: 'Lato', serif;
   margin: 0
 }
 
-@keyframes fadeInAnimation {
-  0% {
-      opacity: 0;
-  }
-  100% {
-      opacity: 1;
-  }
+code {
+  padding: 2px;
 }
+
 
 </style>

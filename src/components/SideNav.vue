@@ -30,9 +30,9 @@ export default{
           skills:{
             Languages: ['Python', 'NodeJs', 'C', 'Java', 'Bash', 'Visual Basic' ],
             Cybersecurity: ['Webapp Pentesting',  'NetworkSec', 'Linux Pentesting', 'Capture-the-flag', 'Cryptography'],
-            Frameworks: ['ExpressJS', 'Django', 'Flask', 'FastAPI'],
+            Frameworks: ['ExpressJS', 'Django', 'Flask', 'FastAPI', 'VueJS'],
             DevOps: ['Git', 'Docker', 'Postman', 'GNU/Linux '],
-            Others: ['VueJS','MySQL', 'MongoDB']
+            Others: ['MySQL', 'MongoDB']
           }
         };
     }

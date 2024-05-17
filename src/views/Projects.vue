@@ -36,7 +36,7 @@
 
   <a href="https://github.com/redtrib3" class="justify-center flex items-center mt-10 pointer-events-none dark:from-slate-900 w-full" target="_blank" >
     <button type="button" class="relative bg-gray-800 hover:bg-gray-900 focus:outline-none  font-medium rounded-lg text-sm  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700  h-12 px-6 flex items-center pointer-events-auto">
-        More Projects
+        View More
     </button>
   </a>
 
@@ -59,44 +59,54 @@ export default {
       SideNav,
       ScrollToTop 
     },
+
+    mounted(){
+      this.fetchProjects();
+    },
+
     data() {
       return {
-
-        projects: [
-          {
-            title: 'Brutal-FX',
-            stack: 'Python',
-            desc: 'A Python script demonstarting bruteforce attacks on Authentication pages.',
-            stars: 76,
-            forks: 14,
-            link: 'https://github.com/redtrib3/Brutal-FX'
-          },
-          {
-            title: 'Sploit Search',
-            stack: 'Python',
-            desc: 'Search for Exploits easily without the need of a local database.',
-            stars: '03',
-            forks: '01',
-            link: 'https://github.com/redtrib3/sploit-search'
-          },
-          {
-            title: 'Stocks-Crypto API',
-            stack: 'Python [FastAPI]',
-            desc: ' GET the real time Stocks/Crypto Information using this API',
-            stars: '00',
-            forks: '00',
-            link: 'https://github.com/redtrib3/stocks-API'
-          },
-          {
-            title: 'Spylogger',
-            stack: 'Python',
-            desc: 'Spylogger is a keylogger for windows OS that captures the keystrokes and send it to your gmail after every 100 characters typed.',
-            stars: '01',
-            forks: '01',
-            link: 'https://github.com/redtrib3/Spylogger'
-          }
-        ]
+        projects: []
       };
+    },
+
+    methods: {
+
+      isExpired(timestamp, ttl) {
+        if(!timestamp){
+          return true;
+        } 
+
+        const old = new Date(timestamp).getTime();
+        const now = new Date().getTime();
+
+        // if ttl is hit
+        return Math.abs(now-old) >= ttl;
+      },
+
+      async fetchProjects() {
+        const CACHE_EXPIRY = 600000; // 10 minutes
+        let projects = [];
+
+        try {
+          const cache = JSON.parse(localStorage.getItem('proj-cache'));
+
+          if (!cache || this.isExpired(cache.timestamp, CACHE_EXPIRY)) {
+              const response = await fetch('http://127.0.0.1:3000/api/projects');
+              let data = await response.json();
+              const localData = { projects: data, timestamp: new Date().toISOString() };
+              localStorage.setItem('proj-cache', JSON.stringify(localData));
+
+              this.projects = data;
+          } else {
+              this.projects = cache.projects;
+          } 
+          
+        } catch (error) {
+            console.error('Error fetching challenges:', error);
+            return [];
+        }
+     },
     }
 }
 
