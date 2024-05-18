@@ -2,7 +2,7 @@
 <section class="animate-fadeIn bg-gray-900 mt-20">
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div class="flex justify-center  mx-auto  text-center">
-            <div class="max-w-sm p-6 w-full shadow-2xl bg-white border border-gray-200 rounded-lg mx-4 my-4  dark:bg-gray-800 dark:border-gray-700">
+            <div class="max-w-sm p-6 w-full shadow-2xl border rounded-lg mx-4 my-4   bg-gray-800  border-gray-700">
 
             <h1 class="mb-4 text-4xl tracking-tight font-sans">Socials</h1>
             <div class="flex justify-center m-10">

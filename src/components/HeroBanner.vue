@@ -10,7 +10,7 @@
 
         
         <!--Filter by Difficulty -->
-        <button type="button" id="dropdownBgHoverButton" data-dropdown-toggle="dropdownBgHover" class="inline-flex text-center text-white bg-gray-800 hover:bg-gray-900 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+        <button type="button" id="dropdownBgHoverButton" data-dropdown-toggle="dropdownBgHover" class="inline-flex text-center text-white  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 bg-gray-800 hover:bg-gray-700 focus:ring-gray-700 border-gray-700">
             <span>Difficulty</span>
             <svg class="w-3 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -18,30 +18,30 @@
         </button>
 
         <!-- Dropdown menu -->
-        <div id="dropdownBgHover" class="animate-fadeIn-quick absolute right-0 mt-2 z-10 hidden w-48 bg-white rounded-lg shadow dark:bg-gray-700">
-            <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownBgHoverButton">
+        <div id="dropdownBgHover" class="animate-fadeIn-quick absolute right-0 mt-2 z-10 hidden w-48 rounded-lg shadow bg-gray-700">
+            <ul class="p-3 space-y-1 text-sm  text-gray-200" aria-labelledby="dropdownBgHoverButton">
                 <li v-for="(diff, index) in challDiffs" :key="index">
-                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                        <input  v-model="filteredDiff" id="checkbox-item-1" type="checkbox" :value="diff" class="w-4 h-4 text-green-500 bg-green-100 border-green-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                        <label  for="checkbox-item-1" class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ diff }}</label>
+                    <div class="flex items-center p-2 rounded  hover:bg-gray-600">
+                        <input  v-model="filteredDiff" id="checkbox-item-1" type="checkbox" :value="diff" class="w-4 h-4 text-green-500 rounded focus:ring-green-600 ring-offset-gray-700 focus:ring-offset-gray-700 focus:ring-2 bg-gray-600 border-gray-500">
+                        <label  for="checkbox-item-1" class="w-full ms-2 text-sm font-medium rounded text-gray-300">{{ diff }}</label>
                     </div>
                 </li>
             </ul>
         </div>
         <!--Filter by type --->
-        <button id="filterByTypeBtn"  class="inline-flex text-center ml-2 shadow-lg text-white bg-gray-800 hover:bg-gray-900 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" type="button">
+        <button id="filterByTypeBtn"  class="inline-flex text-center ml-2 shadow-lg text-white focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 bg-gray-800 hover:bg-gray-700 focus:ring-gray-700 border-gray-700" type="button">
             <span>Type</span>
             <svg class="w-3 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
         </button>
         <!-- Dropdown menu -->
-        <div id="filterByTypeMenus" class="animate-fadeIn-quick absolute right-0 mt-2 z-10 hidden w-48 bg-white rounded-lg shadow dark:bg-gray-700">
-            <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="filterByTypeBtn">
+        <div id="filterByTypeMenus" class="animate-fadeIn-quick absolute right-0 mt-2 z-10 hidden w-48 rounded-lg shadow bg-gray-700">
+            <ul class="p-3 space-y-1 text-sm  text-gray-200" aria-labelledby="filterByTypeBtn">
                 <li v-for="(type, index) in challTypes" :key="index">
-                    <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                        <input v-model="filteredTypes" id="checkbox-item-4" type="checkbox" :value="type" class="w-4 h-4 text-green-500 bg-green-100 border-green-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                        <label for="checkbox-item-4" class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ type }}</label>
+                    <div class="flex items-center p-2 rounded  hover:bg-gray-600">
+                        <input v-model="filteredTypes" id="checkbox-item-4" type="checkbox" :value="type" class="w-4 h-4 text-green-500 rounded  focus:ring-green-600 ring-offset-gray-700 focus:ring-offset-gray-700 focus:ring-2 bg-gray-600 border-gray-500">
+                        <label for="checkbox-item-4" class="w-full ms-2 text-sm font-medium rounded text-gray-300">{{ type }}</label>
                     </div>
                 </li>
             </ul>

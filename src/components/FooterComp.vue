@@ -1,13 +1,13 @@
 <template>
 
-    <footer class="bg-white rounded-lg dark:bg-gray-900 m-4 justify-center">
+    <footer class="rounded-lgbg-gray-900 m-4 justify-center">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <hr class="my-6 border-gray-700 sm:mx-auto lg:my-8" />
     
             
             <div class="flex justify-center">
                 
-                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-400 sm:mb-0 ">
                     <li>
                         <a href="https://raw.githubusercontent.com/redtrib3/rctf-server/main/LICENSE" class="hover:text-white me-4 md:me-6">License</a>
                     </li>

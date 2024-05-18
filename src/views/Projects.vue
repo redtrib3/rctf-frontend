@@ -11,12 +11,12 @@
   </div>
 
   <a  v-for="(proj, index) in projects" :key="index" title="Click to view" :href="proj.link" target="_blank">
-    <div  class="cursor-pointer max-w p-6 bg-white border border-gray-200 rounded-lg mx-4 my-4 shadow dark:bg-gray-800 dark:border-gray-700 hover:translate-y-[-4px] transform transition duration-300 relative">
+    <div  class="cursor-pointer max-w p-6  border  rounded-lg mx-4 my-4 shadow  bg-gray-800  border-gray-700 hover:translate-y-[-4px] transform transition duration-300 relative">
 
-            <h5 class="text-2xl  font-bold tracking-tight text-gray-900 dark:text-gray-100 ">{{  proj.title  }}</h5>
+            <h5 class="text-2xl  font-bold tracking-tight  text-gray-100 ">{{  proj.title  }}</h5>
             <p class="text-sm pb-4 text-gray-400 font-mono transition duration-200">{{ proj.stack }}</p>
         <div>
-            <p class="font-normal text-gray-700 dark:text-gray-400 text-sm" >{{ proj.desc }}</p>
+            <p class="font-normal text-gray-400 text-sm" >{{ proj.desc }}</p>
         </div>
 
         <div class="flex items-center justify-end">
@@ -34,8 +34,8 @@
     </div>
   </a>
 
-  <a href="https://github.com/redtrib3" class="justify-center flex items-center mt-10 pointer-events-none dark:from-slate-900 w-full" target="_blank" >
-    <button type="button" class="relative bg-gray-800 hover:bg-gray-900 focus:outline-none  font-medium rounded-lg text-sm  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700  h-12 px-6 flex items-center pointer-events-auto">
+  <a href="https://github.com/redtrib3" class="justify-center flex items-center mt-10 pointer-events-none from-slate-900 w-full" target="_blank" >
+    <button type="button" class="relative  focus:outline-none  font-medium rounded-lg text-sm   bg-gray-800  hover:bg-gray-700  focus:ring-gray-700  border-gray-700  h-12 px-6 flex items-center pointer-events-auto">
         View More
     </button>
   </a>

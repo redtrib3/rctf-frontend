@@ -1,6 +1,6 @@
 <template>
     <div id="toast-success" class="animate-fadeIn absolute top-0 right-0 z-50 mt-4 mr-4 w-30 h-10 ">
-        <div  class="flex items-center w-full max-w-xs p-4 mb-4 top-4 right-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+        <div  class="flex items-center w-full max-w-xs p-4 mb-4 top-4 right-4  rounded-lg shadow text-gray-400 bg-gray-800" role="alert">
             <div class='inline-flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg'>
                 
 
@@ -27,7 +27,6 @@
 
             </div>
             <div class="ms-3 text-sm font-normal p-2 ">{{ message }}</div>
-            <!-- , 'dark:text-orange-500 bg-yellow-200': state==='warning', 'dark:text-red-500 bg-red-200':state==='failure', 'dark:text-green-500 bg-green-200':state==='success' -->
         </div>
     </div>
 </template>
