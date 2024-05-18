@@ -7,12 +7,15 @@
             
             <div class="flex justify-center">
                 
-                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-400 sm:mb-0 ">
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-400 sm:mb-0 gap-10">
                     <li>
-                        <a href="https://raw.githubusercontent.com/redtrib3/rctf-server/main/LICENSE" class="hover:text-white me-4 md:me-6">License</a>
+                        <a href="https://raw.githubusercontent.com/redtrib3/rctf-server/main/LICENSE" class="hover:text-white">License</a>
                     </li>
                     <li>
                         <a href="https://github.com/redtrib3/rctf-server" class="hover:text-white">View source</a>
+                    </li>
+                    <li>
+                        <a href="/sitemap.xml" class="hover:text-white">Sitemap</a>
                     </li>
                 </ul>
             </div>
