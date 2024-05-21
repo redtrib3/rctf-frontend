@@ -52,6 +52,8 @@ mounted(){
   this.fetchChallenges().then(pages => {
     this.pageSet = pages.reverse(); // latest first.
     this.currChallSet = pages[0];
+  }).catch(err => {
+    console.error(`ERROR: Cannot reach server. VERBOSE: ${err}`);
   });
 
 },
