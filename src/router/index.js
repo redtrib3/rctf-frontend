@@ -11,7 +11,7 @@ const routes = [
     name: 'Hompage',
     component: Homepage,
     meta: {
-      title: 'redtrib3.me',
+      title: 'redtrib3',
       hideFooter: true
     }
   },
